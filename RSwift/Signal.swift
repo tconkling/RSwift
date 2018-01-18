@@ -19,7 +19,7 @@ public protocol Connection: Disposable {
 }
 
 /** A stream of typed events */
-public class Signal<T>: Reactor<T> {
+public class Signal<T>: Reactor<T, Void> {
     public typealias Listener = (T) -> Void
 
     public override init() {
@@ -27,17 +27,51 @@ public class Signal<T>: Reactor<T> {
 
     @discardableResult
     public func connect(_ listener: @escaping Listener) -> Connection {
-        return addConnection(listener)
+        return addConnection(SignalNotifier<T>(listener))
     }
 
     public func emit(_ event: T) {
-        notify(event)
+        notify(event, nil)
+    }
+
+    private class SignalNotifier<T>: Notifier {
+        public let listener: Signal<T>.Listener
+
+        public init(_ listener: @escaping Signal<T>.Listener) {
+            self.listener = listener
+        }
+
+        public func notify(_ a1: Any?, _ a2: Any?) {
+            listener(a1 as! T)
+        }
     }
 }
 
-/** Convenience class for Signal<Void> */
-public class UnitSignal: Signal<Void> {
+/** A signal without any data  */
+public class UnitSignal: Reactor<Void, Void> {
+    public typealias Listener = () -> Void
+
+    public override init() {
+    }
+
+    @discardableResult
+    public func connect(_ listener: @escaping Listener) -> Connection {
+        return addConnection(UnitSignalNotifier(listener))
+    }
+
     public func emit() {
-        emit(())
+        notify(nil, nil)
+    }
+
+    private class UnitSignalNotifier: Notifier {
+        public let listener: UnitSignal.Listener
+
+        public init(_ listener: @escaping UnitSignal.Listener) {
+            self.listener = listener
+        }
+
+        public func notify(_ a1: Any?, _ a2: Any?) {
+            listener()
+        }
     }
 }

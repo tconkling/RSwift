@@ -3,11 +3,9 @@
 
 import Foundation
 
-/** Internal plumbing for Signal */
-public class Reactor<T> {
-    typealias Listener = (T) -> Void
-
-    internal func notify(_ value: T) {
+/** Internal plumbing for Signals and Values */
+public class Reactor<T, U> {
+    internal func notify(_ a1: T?, _ a2: U?) {
         // Ideally, we'd simply return inside the if _isDispatching block, but the
         // synchronized clause is a closure; returning from there keeps us inside
         // this function
@@ -17,7 +15,7 @@ public class Reactor<T> {
             if _isDispatching {
                 alreadyDispatching = true
                 _pendingRuns = Runs.append(_pendingRuns) {
-                    self.notify(value)
+                    self.notify(a1, a2)
                 }
             } else {
                 _isDispatching = true
@@ -28,11 +26,11 @@ public class Reactor<T> {
             return
         }
 
-        var cons = _listeners
+        var cons = _notifiers
         while cons != nil {
             let c = cons!
-            if let listener = c.listener {
-                listener(value)
+            if let notifier = c.notifier {
+                notifier.notify(a1, a2)
             }
             if c.oneShot {
                 c.dispose()
@@ -53,8 +51,8 @@ public class Reactor<T> {
     }
 
     @discardableResult
-    internal func addConnection(_ listener: @escaping Listener) -> Cons {
-        return addCons(Cons(owner: self, listener: listener))
+    internal func addConnection(_ notifier: Notifier) -> Cons {
+        return addCons(Cons(owner: self, notifier: notifier))
     }
 
     @discardableResult
@@ -62,10 +60,10 @@ public class Reactor<T> {
         synchronized(self) {
             if _isDispatching {
                 _pendingRuns = Runs.append(_pendingRuns) {
-                    self._listeners = Cons.insert(self._listeners, cons)
+                    self._notifiers = Cons.insert(self._notifiers, cons)
                 }
             } else {
-                _listeners = Cons.insert(_listeners, cons)
+                _notifiers = Cons.insert(_notifiers, cons)
             }
         }
         return cons
@@ -75,10 +73,10 @@ public class Reactor<T> {
         synchronized(self) {
             if _isDispatching {
                 _pendingRuns = Runs.append(_pendingRuns) {
-                    self._listeners = Cons.remove(self._listeners, cons)
+                    self._notifiers = Cons.remove(self._notifiers, cons)
                 }
             } else {
-                _listeners = Cons.remove(_listeners, cons)
+                _notifiers = Cons.remove(_notifiers, cons)
             }
         }
     }
@@ -96,13 +94,13 @@ public class Reactor<T> {
 
     /** A linked list of listeners */
     internal class Cons: Connection {
-        public var listener: Listener?
+        public var notifier: Notifier?
         public var next: Cons?
         public var oneShot: Bool { return _oneShot }
 
-        public init(owner: Reactor<T>, listener: @escaping Listener) {
+        public init(owner: Reactor<T, U>, notifier: Notifier) {
             _owner = owner
-            self.listener = listener
+            self.notifier = notifier
         }
 
         public func once() -> Connection {
@@ -128,7 +126,7 @@ public class Reactor<T> {
             }
 
             owner.disconnect(self)
-            self.listener = nil
+            self.notifier = nil
             _owner = nil
         }
 
@@ -160,7 +158,7 @@ public class Reactor<T> {
             }
         }
 
-        private weak var _owner: Reactor<T>?
+        private weak var _owner: Reactor<T, U>?
         private var _oneShot: Bool = false
         private var _priority: Int = 0
     }
@@ -184,7 +182,11 @@ public class Reactor<T> {
         }
     }
 
-    private var _listeners: Cons?
+    private var _notifiers: Cons?
     private var _isDispatching: Bool = false
     private var _pendingRuns: Runs?
+}
+
+internal protocol Notifier {
+    func notify(_ a1: Any?, _ a2: Any?)
 }
