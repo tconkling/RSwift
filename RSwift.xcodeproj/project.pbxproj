@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C098299CC1550BEFCC4BC62 /* Synchronized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C098857B45414C09FDFAF16 /* Synchronized.swift */; };
+		1C0986D82C609E9A1E59242A /* Reactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09882DD391A32BAD0C4845 /* Reactor.swift */; };
+		1C098BE4D09348E1CCBD1D89 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C098A6047EE5F6C1FD6E456 /* Signal.swift */; };
+		1C098F847381ECCA37539799 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09867BD36BB05B0E56ABF8 /* Disposable.swift */; };
 		22C9749C20112AAE00A3766D /* RSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C9749220112AAE00A3766D /* RSwift.framework */; };
 		22C974A120112AAE00A3766D /* RSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C974A020112AAE00A3766D /* RSwiftTests.swift */; };
 		22C974A320112AAE00A3766D /* RSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 22C9749520112AAE00A3766D /* RSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +27,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C09867BD36BB05B0E56ABF8 /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
+		1C09882DD391A32BAD0C4845 /* Reactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reactor.swift; sourceTree = "<group>"; };
+		1C098857B45414C09FDFAF16 /* Synchronized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Synchronized.swift; sourceTree = "<group>"; };
+		1C098A6047EE5F6C1FD6E456 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		22C9749220112AAE00A3766D /* RSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C9749520112AAE00A3766D /* RSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSwift.h; sourceTree = "<group>"; };
 		22C9749620112AAE00A3766D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +81,10 @@
 			children = (
 				22C9749520112AAE00A3766D /* RSwift.h */,
 				22C9749620112AAE00A3766D /* Info.plist */,
+				1C098A6047EE5F6C1FD6E456 /* Signal.swift */,
+				1C098857B45414C09FDFAF16 /* Synchronized.swift */,
+				1C09867BD36BB05B0E56ABF8 /* Disposable.swift */,
+				1C09882DD391A32BAD0C4845 /* Reactor.swift */,
 			);
 			path = RSwift;
 			sourceTree = "<group>";
@@ -196,6 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C098BE4D09348E1CCBD1D89 /* Signal.swift in Sources */,
+				1C098299CC1550BEFCC4BC62 /* Synchronized.swift in Sources */,
+				1C098F847381ECCA37539799 /* Disposable.swift in Sources */,
+				1C0986D82C609E9A1E59242A /* Reactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
