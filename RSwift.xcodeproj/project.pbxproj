@@ -12,7 +12,7 @@
 		1C098BE4D09348E1CCBD1D89 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C098A6047EE5F6C1FD6E456 /* Signal.swift */; };
 		1C098F847381ECCA37539799 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09867BD36BB05B0E56ABF8 /* Disposable.swift */; };
 		22C9749C20112AAE00A3766D /* RSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C9749220112AAE00A3766D /* RSwift.framework */; };
-		22C974A120112AAE00A3766D /* RSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C974A020112AAE00A3766D /* RSwiftTests.swift */; };
+		22C974A120112AAE00A3766D /* SignalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C974A020112AAE00A3766D /* SignalTests.swift */; };
 		22C974A320112AAE00A3766D /* RSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 22C9749520112AAE00A3766D /* RSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,7 @@
 		22C9749520112AAE00A3766D /* RSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSwift.h; sourceTree = "<group>"; };
 		22C9749620112AAE00A3766D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C9749B20112AAE00A3766D /* RSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		22C974A020112AAE00A3766D /* RSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSwiftTests.swift; sourceTree = "<group>"; };
+		22C974A020112AAE00A3766D /* SignalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalTests.swift; sourceTree = "<group>"; };
 		22C974A220112AAE00A3766D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +92,7 @@
 		22C9749F20112AAE00A3766D /* RSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				22C974A020112AAE00A3766D /* RSwiftTests.swift */,
+				22C974A020112AAE00A3766D /* SignalTests.swift */,
 				22C974A220112AAE00A3766D /* Info.plist */,
 			);
 			path = RSwiftTests;
@@ -219,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22C974A120112AAE00A3766D /* RSwiftTests.swift in Sources */,
+				22C974A120112AAE00A3766D /* SignalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

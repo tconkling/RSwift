@@ -34,3 +34,10 @@ public class Signal<T>: Reactor<T> {
         notify(event)
     }
 }
+
+/** Convenience class for Signal<Void> */
+public class UnitSignal: Signal<Void> {
+    public func emit() {
+        emit(())
+    }
+}
