@@ -10,6 +10,9 @@ public protocol Disposable: class {
 
 /** Manages a set of Disposables that can all be disposed together */
 public class DisposableSet: Disposable {
+    public init() {
+    }
+    
     /** Adds a Disposable to the set. Returns that Disposable, for chaining. */
     @discardableResult
     public func add(_ disp: Disposable) -> Disposable {
